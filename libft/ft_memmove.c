@@ -6,12 +6,17 @@
 /*   By: aalatzas <aalatzas@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 16:03:59 by aalatzas          #+#    #+#             */
-/*   Updated: 2023/10/09 18:37:21 by aalatzas         ###   ########.fr       */
+/*   Updated: 2024/01/09 02:49:47 by aalatzas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
+/// @brief Copies len bytes from string src to string dst
+/// @param dst The destination string
+/// @param src The source string
+/// @param len The number of bytes to copy
+/// @return void* A pointer to the destination string
 void	*ft_memmove(void *dst, const void *src, size_t len)
 {
 	unsigned char	*dst1;

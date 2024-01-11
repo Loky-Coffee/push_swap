@@ -6,7 +6,7 @@
 /*   By: aalatzas <aalatzas@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/14 17:04:15 by aalatzas          #+#    #+#             */
-/*   Updated: 2023/12/15 15:23:07 by aalatzas         ###   ########.fr       */
+/*   Updated: 2024/01/09 03:01:18 by aalatzas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,17 @@ static int	stringmake(int wortcount, char const *s, char c, char	**newarray)
 	return (1);
 }
 
+/**
+ * @brief Splits a string into an array of strings using a delimiter.\n
+ * The array of strings is terminated by a NULL pointer.\n
+ * If the allocation fails, the function returns NULL.\n
+ * If the string is empty, the function returns NULL.\n
+ * If the allocation fails,function free the previously alloc strings.\n
+ * DONT FORGET TO FREE THE RETURNED STRING ARRAY WITH FT_FREE_SPLIT!!!.
+ * @param s The string to split
+ * @param c The delimiter
+ * @return char** The array of strings
+ */
 char	**ft_split(char const *s, char c)
 {
 	int		wortcount;

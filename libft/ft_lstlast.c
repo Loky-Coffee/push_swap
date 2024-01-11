@@ -6,12 +6,15 @@
 /*   By: aalatzas <aalatzas@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 02:16:35 by aalatzas          #+#    #+#             */
-/*   Updated: 2023/10/19 02:50:42 by aalatzas         ###   ########.fr       */
+/*   Updated: 2024/01/09 02:47:52 by aalatzas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
+/// @brief Returns the last element of the list
+/// @param lst The beginning of the list
+/// @return The last element of the list
 t_list	*ft_lstlast(t_list *lst)
 {
 	if (lst == NULL)

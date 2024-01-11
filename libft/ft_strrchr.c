@@ -6,12 +6,16 @@
 /*   By: aalatzas <aalatzas@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/11 15:11:01 by aalatzas          #+#    #+#             */
-/*   Updated: 2023/11/14 02:10:09 by aalatzas         ###   ########.fr       */
+/*   Updated: 2024/01/09 03:09:33 by aalatzas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
+/// @brief Locates the last occurrence of c (converted to a char) in the string
+/// @param s The string to search
+/// @param c The character to search for
+/// @return char* A pointer to the located character, or NULL if the character
 char	*ft_strrchr(const char *s, int c)
 {
 	int	i;
