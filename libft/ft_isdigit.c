@@ -6,10 +6,11 @@
 /*   By: aalatzas <aalatzas@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 09:23:38 by aalatzas          #+#    #+#             */
-/*   Updated: 2023/10/09 09:53:32 by aalatzas         ###   ########.fr       */
+/*   Updated: 2024/01/09 02:45:51 by aalatzas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+/// @brief Checks if a character is a digit
 int	ft_isdigit(int c)
 {
 	if (c >= 48 && c <= 57)

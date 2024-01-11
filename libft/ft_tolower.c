@@ -6,12 +6,15 @@
 /*   By: aalatzas <aalatzas@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 22:06:57 by aalatzas          #+#    #+#             */
-/*   Updated: 2023/10/18 04:11:09 by aalatzas         ###   ########.fr       */
+/*   Updated: 2024/01/09 03:11:06 by aalatzas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
+/// @brief Converts an upper-case letter to the corresponding lower-case letter
+/// @param c The character to convert
+/// @return int The converted character
 int	ft_tolower(int c)
 {
 	if (c >= 65 && c <= 90)

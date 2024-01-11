@@ -6,7 +6,7 @@
 /*   By: aalatzas <aalatzas@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/01 22:16:15 by aalatzas          #+#    #+#             */
-/*   Updated: 2023/12/15 12:17:25 by aalatzas         ###   ########.fr       */
+/*   Updated: 2024/01/09 03:12:04 by aalatzas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,13 @@ char	*updateeverline(char *everline)
 	return (everline);
 }
 
+/// @brief Reads a line from a file descriptor
+/// @param fd The file descriptor to read from
+/// @return char* The line that has been read
+/// @warning If fd is negative, the behavior is undefined
+/// @warning If the read fails, or if there is a malloc error, the function
+///			returns NULL
+/// @warning The string returned has to be freed by the caller
 char	*get_next_line(int fd)
 {
 	static char	*everline = NULL;

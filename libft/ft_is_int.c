@@ -6,14 +6,31 @@
 /*   By: aalatzas <aalatzas@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/07 09:16:43 by aalatzas          #+#    #+#             */
-/*   Updated: 2024/01/07 09:19:15 by aalatzas         ###   ########.fr       */
+/*   Updated: 2024/01/09 03:18:03 by aalatzas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
+static void	ist_not_char(char *str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i] != '\0')
+	{
+		if (!ft_isdigit(str[i]) && str[i] != '-')
+			ft_error("Error: Invalid argument\n", 1);
+		i++;
+	}
+}
+
+/// @brief Checks if the string is a valid int
+/// @param str The string to check
+/// @return int 1 if the string is a valid int, 0 otherwise
 int	ft_is_int(char *str)
 {
+	ist_not_char(str);
 	if (str[0] == '-')
 	{
 		if (ft_strlen(str) > 11)

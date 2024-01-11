@@ -6,7 +6,7 @@
 /*   By: aalatzas <aalatzas@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 03:15:06 by aalatzas          #+#    #+#             */
-/*   Updated: 2023/10/18 04:55:16 by aalatzas         ###   ########.fr       */
+/*   Updated: 2024/01/09 03:17:37 by aalatzas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,9 @@ static int	intcount(int n)
 	return (i);
 }
 
+/// @brief Converts an int to a string
+/// @param n The int to convert
+/// @return char* The converted int
 char	*ft_itoa(int n)
 {
 	char	*string;

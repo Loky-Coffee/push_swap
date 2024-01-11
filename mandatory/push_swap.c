@@ -6,11 +6,39 @@
 /*   By: aalatzas <aalatzas@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/07 06:04:21 by aalatzas          #+#    #+#             */
-/*   Updated: 2024/01/07 09:20:45 by aalatzas         ###   ########.fr       */
+/*   Updated: 2024/01/11 11:48:26 by aalatzas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+static void	make_sort_array(t_env *env)
+{
+	int		i;
+
+	i = 0;
+	while (i < env->a_size)
+	{
+		env->sort[i] = env->a[i];
+		i++;
+	}
+	i = 0;
+	while (i < env->a_size)
+	{
+		if (env->max < env->sort[i])
+			env->max = env->sort[i];
+		i++;
+	}
+	i = 0;
+	while (i < env->a_size)
+	{
+		if (env->min > env->sort[i])
+			env->min = env->sort[i];
+		i++;
+	}
+	env->average_small = ((env->min + env->max) / 3);
+	env->average_big = ((env->min + env->max) / 3) * 2;
+}
 
 static int	parse_args(int argc, char **argv, t_env *env)
 {
@@ -36,17 +64,18 @@ int	main(int argc, char **argv)
 		return (0);
 	env.a_size = argc - 1;
 	env.b_size = 0;
-	env.ar = ft_calloc(argc - 1, sizeof(char *));
-	env.br = ft_calloc(argc - 1, sizeof(char *));
 	env.a = ft_calloc(argc + 2, sizeof(int));
 	env.b = ft_calloc(argc + 2, sizeof(int));
-	if (!env.ar || !env.br)
-		return (0);
+	env.sort = ft_calloc(argc + 2, sizeof(int));
+
+	if (!env.a || !env.b)
+		ft_error("Calloc Error", 2);
 	if (!parse_args(argc, argv, &env))
 		return (0);
-	// sort_big(&env);
-	free(env.ar);
-	free(env.br);
+	// sort_small_main(&env);
+	make_sort_array(&env);
+	sort_big_main(&env);
+	free(env.sort);
 	free(env.a);
 	free(env.b);
 	return (0);

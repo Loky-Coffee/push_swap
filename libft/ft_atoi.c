@@ -6,12 +6,15 @@
 /*   By: aalatzas <aalatzas@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/11 21:45:37 by aalatzas          #+#    #+#             */
-/*   Updated: 2024/01/07 07:34:12 by aalatzas         ###   ########.fr       */
+/*   Updated: 2024/01/09 02:41:23 by aalatzas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
+/// @brief Converts a string to an int
+/// @param str The string to convert
+/// @return int The converted string
 int	ft_atoi(const char *str)
 {
 	int	i;
