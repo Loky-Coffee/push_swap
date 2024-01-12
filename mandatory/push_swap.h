@@ -6,7 +6,7 @@
 /*   By: aalatzas <aalatzas@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/07 06:04:43 by aalatzas          #+#    #+#             */
-/*   Updated: 2024/01/11 14:52:52 by aalatzas         ###   ########.fr       */
+/*   Updated: 2024/01/12 15:42:49 by aalatzas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,6 @@
 
 # define MAX_INT 2147483647
 # define MIN_INT -2147483648
-
-
 
 /**
  * ----------------------------------------------------------------------
@@ -61,25 +59,29 @@ typedef struct s_env
 	int			b_size;
 	int			min;
 	int			max;
+	int			average_vvvsmall;
+	int			average_vvsmall;
+	int			average_vsmall;
 	int			average_small;
 	int			average_big;
+	int			average_vbig;
+	int			average_vvbig;
 	int			i;
 	int			x;
 }	t_env;
 
-
-void	sort_big_main(t_env *env);
-void	sort_small_main(t_env *env);
-void	sa(t_env *env);
-void	sb(t_env *env);
-void	ss(t_env *env);
-void	pa(t_env *env);
-void	pb(t_env *env);
-void	ra(t_env *env);
-void	rb(t_env *env);
-void	rr(t_env *env);
-void	rra(t_env *env);
-void	rrb(t_env *env);
-void	rrr(t_env *env);
+void		sort_big_main(t_env *env);
+void		sort_a_to_b(t_env *env);
+void		sa(t_env *env);
+void		sb(t_env *env);
+void		ss(t_env *env);
+void		pa(t_env *env);
+void		pb(t_env *env);
+void		ra(t_env *env);
+void		rb(t_env *env);
+void		rr(t_env *env);
+void		rra(t_env *env);
+void		rrb(t_env *env);
+void		rrr(t_env *env);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: aalatzas <aalatzas@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 03:50:02 by aalatzas          #+#    #+#             */
-/*   Updated: 2024/01/11 15:56:25 by aalatzas         ###   ########.fr       */
+/*   Updated: 2024/01/12 23:52:01 by aalatzas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,123 +14,207 @@
 
 void	sort_b_to_a(t_env *env)
 {
-	// if (env->b[0] < env->b[1] && env->a[0] > env->a[1] && env->a[0] < env->a[env->a_size - 1] && env->a[0] < env->a[1] / 2)
-	// 	ss(env);
-	// else if (env->b[0] > env->b[env->b_size] && env->b[1] < env->b[env->b_size] && env->a[0] > env->a[env->a_size] && env->a[env->a_size] < env->a[1])
-	// 	rrr(env);
-	// else if (env->b[0] > env->a[1] && env->a[0] > env->a[env->a_size - 1] && env->a[0] > env->a[1] && env->a[0] > env->a[env->a_size] * 2)
-	// 	rr(env);
-	if (env->a_size == 0)
-	{
-		pa(env);
-		pa(env);
-	}
-
-	if (env->a[0] > env->a[1] && env->a[0] / 2 < env->a[1])
-	{
-		// printf("1\n");
-		// fflush(stdout);
-		if (env->a[1] > env->a[2])
-		{
-			ra(env);
-			sa(env);
-			rra(env);
-		}
-		else
-			sa(env);
-	}
-	else if ((env->a[0] > env->a[2] && env->a[0] > env->a[env->a_size - 2]) || (env->a[0] * 2 > env->a[1] && env->a[0] > env->a[2]))
-	{
-		// printf("2\n");
-		// fflush(stdout);
-		if (env->a[0] > env->a[env->a_size - 2])
-		{
-			rra(env);
-			sa(env);
-			ra(env);
-			ra(env);
-		}
-		else
-			ra(env);
-	}
-	else if (env->a[0] > env->a[1])
-	{
-		// printf("3\n");
-		// fflush(stdout);
-		sa(env);
-		if (env->a[1] > env->a[2])
-		{
-			ra(env);
-			sa(env);
-			rra(env);
-		}
-	}
-	else if (env->a[env->a_size - 1] < env->a[env->a_size - 2] && env->a_size > 2 )
-	{
-		// printf("4\n");
-		// fflush(stdout);
-		rra(env);
-		rra(env);
-		sa(env);
-		ra(env);
-		ra(env);
-	}
-	if (env->a[0] > env->a[1] && env->a[0] > env->a[env->a_size - 2])
-	{
-		// printf("5\n");
-		// fflush(stdout);
-		ra(env);
-	}
 	int i;
 
-	i = 0;
-	// while (env->b[0] > env->a[0])
-	// {
-	// 	ra(env);
-	// 	i++;
-	// }
-	pa(env);
-	// if (i != 0)
-	// 	while (i >= 0)
-	// 	{
-	// 		rra(env);
-	// 		i--;
-	// 	}
 
-}
-
-void	sort_a_to_b(t_env *env)
-{
-	env->i = 0;
-	while (env->i <= env->a_size)
+	//nur grun und grundhellblau
+	i = env->a_size;
+	while(i > 0)
 	{
-		if (env->a[env->i] < env->average_big)
-			env->x = 1;
-		env->i++;
+		if (env->a[0] < env->average_big && env->a[0] > env->average_vsmall)
+			pb(env);
+		else
+			ra(env);
+		if (env->b[0] < env->average_small && env->b[0] > env->average_vsmall && env->b[0] < env->b[1])
+			rb(env);
+		i--;
 	}
-	// if (env->b[0] > env->average_big && env->x == 1)
-	// {
-	// 	pa(env);
-	// 	sa(env);
-	// }
-	if (env->a[0] > env->average_big && env->b[0] < env->average_small)
-		rr(env);
-	else if (env->b[0] < env->average_small && env->x != 1)
-		rb(env);
-	else if (env->a[0] > env->average_big)
-		ra(env);
-	else if (env->a[0] < env->average_big)
+
+	//yelb hellgrun obern , hellblaublau unten
+	i = env->a_size;
+	while(i > 0)
+	{
+		if (env->a[0] < env->average_vbig && env->a[0] > env->average_vvsmall)
+			pb(env);
+		else
+			ra(env);
+		if (env->b[0] < env->average_small)
+			rb(env);
+		i--;
+	}
+
+	//Dunkelblau
+	i = env->a_size;
+	while(i > 0)
+	{
+		if (env->a[0] <= env->average_vvsmall && env->a[0] < env->average_vsmall)
+			pb(env);
+		else
+			ra(env);
+		if (env->b[0] <= env->average_vsmall && env->b[env->b_size] <= env->average_vsmall)
+			rb(env);
+		i--;
+	}
+
+	// printf("LALALALLA");
+	// fflush(stdout);
+	i = env->a_size;
+	while(i > 0)
+	{
+		if (env->a[0] <= env->average_vvbig)
+			pb(env);
+		else
+			ra(env);
+		if (env->b[0] < env->average_small && env->b[0] > env->average_big)
+			rb(env);
+		i--;
+	}
+
+	//ROT
+	i = env->a_size;
+	while (i > 2)
+	{
 		pb(env);
+		// if (env->b[0] < env->b[1])
+		// 	rb(env);
+		i--;
+	}
+
+	if (env->a[0] > env->a[1])
+		sa(env);
+
+	i = env->b_size;
+	// int x = 0;
+	while(env->a_size != env->a_size + env->b_size)
+	{
+		if (env->a[0] > env->b[0])
+		{
+			pa(env);
+			ra(env);
+		}
+		if (env->a[0] < env->b[0])
+		{
+			rb(env);
+		}
+		if (env->b[0] == env->a[0] - 1)
+			rra(env);
+		else
+			pa(env);
+	}
+	i = 0;
+	while (i <= env->a_size)
+	{
+		if (env->a[i] > env->a[i+1])
+			sort_b_to_a(env);
+		if (i == env->a_size - 1)
+			exit (0);
+		i++;
+	}
+
 }
+
+
+
+
+		// if ((env->b[0] - 1) == env->b[1] || (env->b[0] - 1) == env->b[2] || (env->b[0] - 1) == env->b[3] \
+		// || (env->b[0] - 1) == env->b[4])
+		// {
+		// 	if ((env->b[0] - 1) == env->b[2] || (env->b[0] - 1) == env->b[3] || (env->b[0] - 1) == env->b[4])
+		// 	{
+		// 		if ((env->b[0] - 1) == env->b[3] || (env->b[0] - 1) == env->b[4])
+		// 		{
+		// 			if ((env->b[0] - 1) == env->b[4])
+		// 				sb(env);
+		// 			sb(env);
+		// 		}
+		// 		sb(env);
+		// 	}
+		// 	else
+		// 		sb(env);
+		// }
+		// if ((env->a[0]) > env->a[1] || (env->a[0]) > env->a[2] || (env->a[0]) > env->a[3] \
+		// || (env->a[0]) > env->a[4])
+		// {
+		// 	if ((env->a[0]) > env->a[2] || (env->a[0]) > env->a[3] || (env->a[0]) > env->a[4])
+		// 	{
+		// 		if ((env->a[0]) > env->a[3] || (env->a[0]) > env->a[4])
+		// 		{
+		// 			if ((env->a[0]) > env->a[4])
+		// 				sa(env);
+		// 			sa(env);
+		// 		}
+		// 		sa(env);
+		// 	}
+		// 	else
+		// 		sa(env);
+		// }
+
+
+// void	sort_a_to_b(t_env *env)
+// {
+// 	env->i = 0;
+// 	while (env->b_size >= 0)
+// 	{
+// 		if (env->a[0] < env->a[1])
+// 			sa(env);
+// 		else if (env->a[env->a_size - 1] > env->a[0])
+// 			rra(env);
+// 		else if (env->a[env->a_size - 1] < env->a[0] && env->a[0] > env->a[1])
+// 			ra(env);
+// 		else
+// 			pa(env);
+// 	}
+// }
+// void	sort_a_to_b(t_env *env)
+// {
+// 	env->i = 0;
+// 	while (env->a_size > 2)
+// 	{
+// 		if (env->a[env->a_size - 1] < env->a[0])
+// 			rra(env);
+// 		else if (env->a[0] > env->a[1])
+// 			sa(env);
+// 		else if (env->b[0] > env->a[0])
+// 		{
+// 			pa(env);
+// 			sa(env);
+// 		}
+// 		else if (env->a[0] < env->a[1] && env->a[0] < env->a[env->a_size - 1])
+// 			pb(env);
+// 	}
+// }
+// void	sort_a_to_b(t_env *env)
+// {
+// 	env->i = 0;
+// 	while (env->a_size > 2)
+// 	{
+// 		if (env->a[0] > env->a[1] && env->a[0] > env->a[env->a_size - 1])
+// 			ra(env);
+// 		else if (env->a[0] < env->a[1] && env->a[0] < env->a[env->a_size - 1])
+// 		{
+// 			if (env->b[0] > env->a[0])
+// 			{
+// 				pa(env);
+// 				if (env->a[0] > env->a[1])
+// 					sa(env);
+// 			}
+// 			else
+// 				pb(env);
+// 		}
+// 		else if (env->a[0] < env->a[env->a_size - 1] && env->a[0] > env->a[1])
+// 			sa(env);
+// 		else
+// 			rra(env);
+// 	}
+// }
+
+
+
 void	sort_big_main(t_env *env)
 {
 	env->x = 0;
-	while (env->a_size > 2)
-		sort_a_to_b(env);
-	// while (env->b_size > 0)
-	// {
-	// 	sort_b_to_a(env);
-	// }
+	sort_b_to_a(env);
+	// sort_a_to_b(env);
 }
 
 // void	sort_small_main(t_env *env)
