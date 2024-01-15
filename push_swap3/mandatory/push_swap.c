@@ -6,13 +6,13 @@
 /*   By: aalatzas <aalatzas@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/07 06:04:21 by aalatzas          #+#    #+#             */
-/*   Updated: 2024/01/14 05:33:46 by aalatzas         ###   ########.fr       */
+/*   Updated: 2024/01/15 19:41:21 by aalatzas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static void	intex_stack_a(t_env *env)
+void	intex_stack_a(t_env *env)
 {
 	long int small;
 	int buffer;
@@ -38,9 +38,10 @@ static void	intex_stack_a(t_env *env)
 		env->x++;
 		env->i = 0;
 	}
+	free(env->sort);
 }
 
-static void	make_sort_array(t_env *env)
+void	make_sort_array(t_env *env)
 {
 	int	i;
 
@@ -84,9 +85,10 @@ int	main(int argc, char **argv)
 		ft_error("Calloc Error", 2);
 	if (!parse_args(argc, argv, &env))
 		return (0);
-	make_sort_array(&env);
-	sort_big_main(&env);
-	free(env.sort);
+	if (argc == 4)
+		sort3(&env);
+	else if(argc > 4)
+		sort_big_main(&env);
 	free(env.a);
 	free(env.b);
 	return (0);

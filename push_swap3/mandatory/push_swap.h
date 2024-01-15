@@ -6,7 +6,7 @@
 /*   By: aalatzas <aalatzas@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/07 06:04:43 by aalatzas          #+#    #+#             */
-/*   Updated: 2024/01/14 06:09:52 by aalatzas         ###   ########.fr       */
+/*   Updated: 2024/01/15 19:41:16 by aalatzas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@
 
 # define MAX_INT 2147483647
 # define MIN_INT -2147483648
-# define THREADS 7
+# define CHUNKS 3
 
 /**
  * ----------------------------------------------------------------------
@@ -59,15 +59,8 @@ typedef struct s_env
 	int			a_size;
 	int			b_size;
 	int			min;
-	int			index;
 	int			max;
-	int			average_vvvsmall;
-	int			average_vvsmall;
-	int			average_vsmall;
-	int			average_small;
-	int			average_big;
-	int			average_vbig;
-	int			average_vvbig;
+	int			index;
 	int			i;
 	int			x;
 }	t_env;
@@ -87,5 +80,9 @@ void		rrb(t_env *env);
 void		rrr(t_env *env);
 void		sort_a_to_b_1(t_env *env);
 void		print_stacks(t_env *env);
+void		sort3(t_env *env);
+void		make_chunks(t_env *env);
+void		intex_stack_a(t_env *env);
+void		make_sort_array(t_env *env);
 
 #endif
