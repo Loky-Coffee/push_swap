@@ -6,15 +6,44 @@
 /*   By: aalatzas <aalatzas@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/07 06:04:21 by aalatzas          #+#    #+#             */
-/*   Updated: 2024/01/12 15:44:21 by aalatzas         ###   ########.fr       */
+/*   Updated: 2024/01/15 19:41:21 by aalatzas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static void	make_sort_array(t_env *env)
+void	intex_stack_a(t_env *env)
 {
-	int		i;
+	long int small;
+	int buffer;
+
+	env->x = 1;
+	buffer = MAX_INT;
+	small = MIN_INT - 1;
+	env->i = 0;
+	while (env->x <= env->a_size)
+	{
+		while (env->i < env->a_size)
+		{
+			if (env->sort[env->i] <= buffer && env->sort[env->i] > small)
+			{
+				buffer = env->sort[env->i];
+				env->index = env->i;
+			}
+			env->i++;
+		}
+		small = buffer;
+		buffer = MAX_INT;
+		env->a[env->index] = env->x;
+		env->x++;
+		env->i = 0;
+	}
+	free(env->sort);
+}
+
+void	make_sort_array(t_env *env)
+{
+	int	i;
 
 	i = 0;
 	while (i < env->a_size)
@@ -22,27 +51,7 @@ static void	make_sort_array(t_env *env)
 		env->sort[i] = env->a[i];
 		i++;
 	}
-	i = 0;
-	while (i < env->a_size)
-	{
-		if (env->max < env->sort[i])
-			env->max = env->sort[i];
-		i++;
-	}
-	i = 0;
-	while (i < env->a_size)
-	{
-		if (env->min > env->sort[i])
-			env->min = env->sort[i];
-		i++;
-	}
-	env->average_vvvsmall = (((env->min + env->max) / 8));
-	env->average_vvsmall = (((env->min + env->max) / 7) * 1);
-	env->average_vsmall = (((env->min + env->max) / 7) * 2);
-	env->average_small = (((env->min + env->max) / 7) * 3);
-	env->average_big = (((env->min + env->max) / 7) * 4);
-	env->average_vbig = (((env->min + env->max) / 7) * 5);
-	env->average_vvbig = (((env->min + env->max) / 7) * 6);
+	intex_stack_a(env);
 }
 
 static int	parse_args(int argc, char **argv, t_env *env)
@@ -76,9 +85,10 @@ int	main(int argc, char **argv)
 		ft_error("Calloc Error", 2);
 	if (!parse_args(argc, argv, &env))
 		return (0);
-	make_sort_array(&env);
-	sort_big_main(&env);
-	free(env.sort);
+	if (argc == 4)
+		sort3(&env);
+	else if(argc > 4)
+		sort_big_main(&env);
 	free(env.a);
 	free(env.b);
 	return (0);

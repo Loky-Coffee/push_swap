@@ -6,12 +6,12 @@
 #    By: aalatzas <aalatzas@student.42heilbronn.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/07 06:04:33 by aalatzas          #+#    #+#              #
-#    Updated: 2024/01/07 08:25:20 by aalatzas         ###   ########.fr        #
+#    Updated: 2024/01/15 16:54:48 by aalatzas         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC = cc
-CFLAGS = -Wall -Werror -Wextra -g
+CFLAGS = #-Wall -Werror -Wextra -g
 
 ################################################################################
 ####		 	 PUSH_SWAP_MANDATORY_PART_RULES			   #####
@@ -23,6 +23,12 @@ SRC_DIR = mandatory/
 
 SRC = \
 			$(SRC_DIR)$(NAME).c \
+			$(SRC_DIR)sort.c \
+			$(SRC_DIR)_push_pa_pb.c \
+			$(SRC_DIR)_swap_sa_sb_ss.c \
+			$(SRC_DIR)_rotate_ra_rb_rr.c \
+			$(SRC_DIR)_reverse_rotate_rra_rrb_rrr.c \
+			$(SRC_DIR)first_sort.c \
 
 OBJ = $(addprefix $(OBJ_DIR), $(notdir $(SRC:.c=.o)))
 
@@ -45,12 +51,22 @@ t1: $(NAME)
 t2: $(NAME)
 		./$(NAME) -52 -43 -20 -1 0 1 2 3 4 5 6 7 8 9 10 11 12 13 \
 			14 25 30 200 850 5000 10000 100000 1000000 10000000 \
-			100000000 1000000000
+			100000000 1000002
+
+t: $(NAME)
+		push_swap_visualizer/build/bin/./visualizer
 
 re: fclean all
 
-test: all
-	t1 t2
+install_test:
+	git clone https://github.com/o-reo/push_swap_visualizer.git
+	cd push_swap_visualizer
+	mkdir build
+	cd build
+	cmake ..
+	make
+rm_test:
+	rm -rf push_swap_visualizer
 ################################################################################
 ####			 PUSH_SWAP_BONUS_PART_RULES 			   #####
 ################################################################################
@@ -117,6 +133,7 @@ fclean_libft: clean_libft
 .PHONY: all clean fclean re start test libft re_libft clean_libft fclean_libft \
 		mlx clean_mlx tb t re_bonus all_bonus clean_bonus fclean_bonus \
 		re_bonus test_bonus
-fcleanall: fclean fclean_libft
+fcleanall: fclean fclean_libft rm_test
 		rm -f libft.a
 		rm -f libft.h
+		rm -f imgui.ini
