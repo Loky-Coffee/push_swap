@@ -6,7 +6,7 @@
 /*   By: aalatzas <aalatzas@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/07 17:32:21 by aalatzas          #+#    #+#             */
-/*   Updated: 2024/01/07 09:18:47 by aalatzas         ###   ########.fr       */
+/*   Updated: 2024/01/14 05:27:32 by aalatzas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,5 +87,7 @@ int					ft_lstsize(t_list *lst);
 void				free_split(char **split_array);
 void				ft_error(char *str, int exit_code);
 int					ft_is_int(char *str);
+int					ft_is_min_nbr(int *arg);
+int					ft_is_max_nbr(int *arg);
 
 #endif

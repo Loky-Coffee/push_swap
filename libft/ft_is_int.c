@@ -6,11 +6,31 @@
 /*   By: aalatzas <aalatzas@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/07 09:16:43 by aalatzas          #+#    #+#             */
-/*   Updated: 2024/01/09 03:18:03 by aalatzas         ###   ########.fr       */
+/*   Updated: 2024/01/12 15:39:04 by aalatzas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+
+static void	check_only_one_minus(char *str)
+{
+	int	i;
+	int	x;
+
+	i = 0;
+	x = 0;
+	while (str[i] != '\0')
+	{
+		if (str[i] == '-' || str[i] == '+')
+		{
+			x++;
+			if (x == 2)
+				ft_error("Error: |Only one Arithmetic Operators \
+				\n       |per number is allowed!\n", 1);
+		}
+		i++;
+	}
+}
 
 static void	ist_not_char(char *str)
 {
@@ -19,10 +39,11 @@ static void	ist_not_char(char *str)
 	i = 0;
 	while (str[i] != '\0')
 	{
-		if (!ft_isdigit(str[i]) && str[i] != '-')
+		if ((!ft_isdigit(str[i])) && (str[i] != '-') && (str[i] != '+'))
 			ft_error("Error: Invalid argument\n", 1);
 		i++;
 	}
+	check_only_one_minus(str);
 }
 
 /// @brief Checks if the string is a valid int

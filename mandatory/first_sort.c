@@ -50,21 +50,23 @@ void	make_chunks(t_env *env)
 	int	moved;
 	int total;
 	int	id;
+	int	stuck;
 
 	id = 2;
 	total = 0;
 	original = env->a_size;
+	stuck = env->a_size;
 	int i = 0;
 	make_sort_array(env);
-	while(env->a_size > 2)
+	while(env->a_size >= 1)
 	{
 		tails = original / id;
 		moved = 0;
 		total = 0;
-		while (moved < tails)
+		while (moved <= tails  && stuck > 0)
 		{
 			print_stacks(env);
-			if (env->a[0] <= tails * id)
+			if (env->a[0] < tails)
 			{
 				pb(env);
 				moved++;
@@ -72,9 +74,11 @@ void	make_chunks(t_env *env)
 			}
 			else
 				ra(env);
+			stuck--;
 		}
+		stuck = env->a_size;
 		printf("id : %d\n", id);
 		fflush(stdout);
-		id *= 2;
+		id += 2;
 	}
 }
