@@ -6,79 +6,81 @@
 /*   By: aalatzas <aalatzas@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/14 06:04:00 by aalatzas          #+#    #+#             */
-/*   Updated: 2024/01/15 21:20:13 by aalatzas         ###   ########.fr       */
+/*   Updated: 2024/01/19 04:38:16 by aalatzas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-// void	sort_a_to_b_1(t_env *env)
-// {
-// 	int divideby;
-// 	int dividebak;
-// 	int x;
-// 	int i;
+void	sort_a_to_b(t_env *env)
+{
+	int divideby;
+	int dividebak;
+	int x;
+	int i;
+	int	backup;
 
-// 	divideby = env->a_size / 2;
-// 	dividebak = divideby;
-// 	x = env->a_size;
-// 	i = 2;
-// 	while (env->a_size > 3)
-// 	{
-// 		while (divideby < env->a_size)
-// 		{
-// 			if (env->a[0] <= divideby && env->a[0] != ft_is_max_nbr(env->a))
-// 				pb(env);
-// 			else
-// 				ra(env);
-// 			if (x == 0)
-// 			{
-// 				divideby = dividebak * i;
-// 				i *= 2;
-// 				x = env->a_size;
-// 			}
-// 			else
-// 				x--;
-// 		}
-// 	}
-// }
+	divideby = env->a_size / CHUNKS;
+	dividebak = divideby;
+	x = env->a_size;
+	i = 2;
+	while (env->a_size != 1)
+	{
+		backup = divideby;
+		if (env->a[0] <= divideby && env->a[0] != ft_is_max_nbr(env->a))
+		{
+			pb(env);
+			if (env->b[0] < (divideby - (dividebak / 2)) && env->a[0] > divideby)
+				rr(env);
+			else if (env->b[0] < (divideby - (dividebak / 2)))
+				rb(env);
+		}
+		else
+			ra(env);
+		if (x == 0)
+		{
+			divideby = dividebak * i;
+			i++;
+			x = env->a_size;
+		}
+		else
+			x--;
+	}
+}
 
 void	make_chunks(t_env *env)
 {
-	int	original;
-	int	tails;
-	int	moved;
-	int total;
-	int	id;
-	int	stuck;
+	int		moves;
 
-	id = 2;
-	total = 0;
-	original = env->a_size;
-	stuck = env->a_size;
-	int i = 0;
-	make_sort_array(env);
-	while(env->a_size >= 1)
+	env->original = env->a_size;
+	env->id = 2;
+	env->tails = 75;
+	env->tailsbuffer = 3;
+	while (env->a_size > 3)
 	{
-		tails = original / id;
-		moved = 0;
-		total = 0;
-		while (moved <= tails  && stuck > 0)
+		moves = env->a_size;
+		while (moves > 0 && env->a_size > 3)
 		{
-			print_stacks(env);
-			if (env->a[0] < tails)
+			if (env->a[0] <= env->tails && env->a[0] != ft_is_max_nbr(env->a) && env->a[0] != ft_is_max_nbr(env->a) - 1 && env->a[0] != ft_is_max_nbr(env->a) - 2)
 			{
 				pb(env);
-				moved++;
-				total++;
+				if (env->b[0] < ((env->tails + env->tailsbuffer) / 2) && env->a[0] > env->tails)
+				{
+					rr(env);
+					moves--;
+				}
+				else if (env->b[0] < ((env->tails + env->tailsbuffer) / 2))
+					rb(env);
 			}
 			else
 				ra(env);
-			stuck--;
+			moves--;
 		}
-		stuck = env->a_size;
-		printf("id : %d\n", id);
-		fflush(stdout);
-		id += 2;
+		env->id += 2;
+		env->tailsbuffer = env->tails;
+		env->tails = (env->original / env->id) + env->tails;
 	}
+	// print_stacks(env);
+	// fflush(stdout);
+	sort3(env);
 }
