@@ -6,7 +6,7 @@
 /*   By: aalatzas <aalatzas@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/07 06:04:21 by aalatzas          #+#    #+#             */
-/*   Updated: 2024/01/15 19:41:21 by aalatzas         ###   ########.fr       */
+/*   Updated: 2024/01/19 03:51:40 by aalatzas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 void	intex_stack_a(t_env *env)
 {
-	long int small;
-	int buffer;
+	long int	small;
+	int			buffer;
 
 	env->x = 1;
 	buffer = MAX_INT;
@@ -85,10 +85,7 @@ int	main(int argc, char **argv)
 		ft_error("Calloc Error", 2);
 	if (!parse_args(argc, argv, &env))
 		return (0);
-	if (argc == 4)
-		sort3(&env);
-	else if(argc > 4)
-		sort_big_main(&env);
+	sort_big_main(&env);
 	free(env.a);
 	free(env.b);
 	return (0);
