@@ -6,12 +6,12 @@
 #    By: aalatzas <aalatzas@student.42heilbronn.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/07 06:04:33 by aalatzas          #+#    #+#              #
-#    Updated: 2024/01/17 13:52:45 by aalatzas         ###   ########.fr        #
+#    Updated: 2024/01/20 22:05:58 by aalatzas         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC = cc
-CFLAGS = #-Wall -Werror -Wextra -g
+CFLAGS = -Wall -Werror -Wextra -g
 
 ################################################################################
 ####		 	 PUSH_SWAP_MANDATORY_PART_RULES			   #####
@@ -24,11 +24,14 @@ SRC_DIR = mandatory/
 SRC = \
 			$(SRC_DIR)$(NAME).c \
 			$(SRC_DIR)sort.c \
-			$(SRC_DIR)_push_pa_pb.c \
-			$(SRC_DIR)_swap_sa_sb_ss.c \
-			$(SRC_DIR)_rotate_ra_rb_rr.c \
-			$(SRC_DIR)_reverse_rotate_rra_rrb_rrr.c \
+			$(SRC_DIR)1push_pa_pb.c \
+			$(SRC_DIR)1swap_sa_sb_ss.c \
+			$(SRC_DIR)1rotate_ra_rb_rr.c \
+			$(SRC_DIR)1reverse_rotate_rra_rrb_rrr.c \
 			$(SRC_DIR)first_sort.c \
+			$(SRC_DIR)ft_is_int.c \
+			$(SRC_DIR)parsing.c \
+
 
 OBJ = $(addprefix $(OBJ_DIR), $(notdir $(SRC:.c=.o)))
 
@@ -47,7 +50,7 @@ fclean: clean
 	@rm -f $(NAME)
 
 t1: $(NAME)
-		./$(NAME) 2 1 3 6 5 8 7 4 9 0
+		./$(NAME) "2 1 3 6 5 8 7 4 9 0"
 t2: $(NAME)
 		./$(NAME) -52 -43 -20 -1 1 2 3 4 5 6 7 8 9 10 11 12 13 \
 			14 25 30 200 850 5000 10000 100000 1000000 10000000 \
@@ -70,41 +73,49 @@ rm_test:
 ################################################################################
 ####			 PUSH_SWAP_BONUS_PART_RULES 			   #####
 ################################################################################
-# NAME_BONUS = push_swap_bonus
-# OBJ_DIR_BONUS = bonus/obj/
-# SRC_DIR_BONUS = bonus/
+NAME_BONUS = checker
+OBJ_DIR_BONUS = bonus/obj/
+SRC_DIR_BONUS = bonus/
 
-# SRC_BONUS = \
-# 			$(SRC_DIR_BONUS)$(NAME_BONUS).c \
-
-# OBJ_BONUS = $(addprefix $(OBJ_DIR_BONUS), $(notdir $(SRC_BONUS:.c=.o)))
-
-# bonus: $(NAME_BONUS)
-# $(NAME_BONUS): libft $(OBJ_BONUS)
-# 	@$(CC) $(CFLAGS) -o $(NAME_BONUS) $(OBJ_BONUS) $(LIBFT1)
-
-# $(OBJ_DIR_BONUS)%.o: $(SRC_DIR_BONUS)%.c
-# 	@mkdir -p $(OBJ_DIR_BONUS)
-# 	$(CC) $(CFLAGS) -c $< -o $@
-
-# clean_bonus:
-# 	@rm -f $(OBJ_BONUS)
-
-# fclean_bonus: clean_bonus
-# 	@rm -f $(NAME_BONUS)
+SRC_BONUS = \
+			$(SRC_DIR_BONUS)$(NAME_BONUS)_bonus.c \
+			$(SRC_DIR_BONUS)1push_pa_pb_bonus.c \
+			$(SRC_DIR_BONUS)1reverse_rotate_rra_rrb_rrr_bonus.c \
+			$(SRC_DIR_BONUS)1rotate_ra_rb_rr_bonus.c \
+			$(SRC_DIR_BONUS)1swap_sa_sb_ss_bonus.c \
+			$(SRC_DIR_BONUS)ft_is_int_bonus.c \
+			$(SRC_DIR_BONUS)parsing_bonus.c \
 
 
-# t1: $(NAME)
-# 		./$(NAME) 2 1 3 6 5 8 7 4 9 0
-# t2: $(NAME)
-# 		./$(NAME) -52 -43 -20 -1 0 1 2 3 4 5 6 7 8 9 10 11 12 13 \
+
+OBJ_BONUS = $(addprefix $(OBJ_DIR_BONUS), $(notdir $(SRC_BONUS:.c=.o)))
+
+bonus: $(NAME_BONUS)
+$(NAME_BONUS): libft $(OBJ_BONUS)
+	@$(CC) $(CFLAGS) -o $(NAME_BONUS) $(OBJ_BONUS) $(LIBFT1)
+
+$(OBJ_DIR_BONUS)%.o: $(SRC_DIR_BONUS)%.c
+	@mkdir -p $(OBJ_DIR_BONUS)
+	$(CC) $(CFLAGS) -c $< -o $@
+
+clean_bonus:
+	@rm -f $(OBJ_BONUS)
+
+fclean_bonus: clean_bonus
+	@rm -f $(NAME_BONUS)
+
+
+tb1: $(NAME)
+		./$(NAME) 2 1 3 6 5 8 7 4 9 0
+tb2: $(NAME)
+		./$(NAME) -52 -43 -20 -1 0 1 2 3 4 5 6 7 8 9 10 11 12 13 \
 			14 25 30 200 850 5000 10000 100000 1000000 10000000 \
 			100000000 1000000000
 
-# re_bonus: fclean all
+re_bonus: fclean bonus
 
-# testb: all
-# 	tb1 tb2
+testb: all
+	tb1 tb2
 
 ################################################################################
 ####				   LIBFT_RULES 				   #####
