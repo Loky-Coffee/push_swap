@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.c                                        :+:      :+:    :+:   */
+/*   checker_bonus.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aalatzas <aalatzas@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/07 06:04:21 by aalatzas          #+#    #+#             */
-/*   Updated: 2024/01/20 19:07:20 by aalatzas         ###   ########.fr       */
+/*   Updated: 2024/01/20 22:02:56 by aalatzas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "push_swap_bonus.h"
 
 void	intex_stack_a(t_env *env)
 {
@@ -54,31 +54,60 @@ void	make_index_array(t_env *env)
 	}
 	intex_stack_a(env);
 }
-
-void	sort_big_main(t_env *env)
+int	check_args(t_env *env)
 {
-	if (env->a_size == 5)
-		sort5(env);
-	else if (env->a_size == 3)
-		sort3(env);
-	else
-	{
-		if (env->a_size < 150)
-			sort_a_to_b(env);
-		else
-			make_chunks(env);
-		sort5(env);
-		while (env->b_size > 0)
-			search_less_cost(env);
-	}
-	while ((env->a[env->a_size - 1] + 1) == env->a[0])
+	if (ft_strncmp(env->line, "sa\n", ft_strlen(env->line)))
+		sa(env);
+	else if (ft_strncmp(env->line, "sb\n", ft_strlen(env->line)))
+		sb(env);
+	else if (ft_strncmp(env->line, "ss\n", ft_strlen(env->line)))
+		ss(env);
+	else if (ft_strncmp(env->line, "pa\n", ft_strlen(env->line)))
+		pa(env);
+	else if (ft_strncmp(env->line, "pb\n", ft_strlen(env->line)))
+		pb(env);
+	else if (ft_strncmp(env->line, "ra\n", ft_strlen(env->line)))
+		ra(env);
+	else if (ft_strncmp(env->line, "rb\n", ft_strlen(env->line)))
+		rb(env);
+	else if (ft_strncmp(env->line, "rr\n", ft_strlen(env->line)))
+		rr(env);
+	else if (ft_strncmp(env->line, "rra\n", ft_strlen(env->line)))
 		rra(env);
+	else if (ft_strncmp(env->line, "rrb\n", ft_strlen(env->line)))
+		rrb(env);
+	else if (ft_strncmp(env->line, "rrr\n", ft_strlen(env->line)))
+		rrr(env);
+	else
+		return(EXIT_FAILURE);
+	return (EXIT_SUCCESS);
+}
+int	checker(t_env *env)
+{
+	while (1)
+	{
+		env->line = get_next_line(STDIN_FILENO);
+		if (env->line == NULL)
+			return (0);
+		if(check_args(env) == EXIT_FAILURE)
+		{
+			free(env->line);
+			break;
+		}
+		else if (check_args(env) == EXIT_SUCCESS)
+		{
+			free(env->line);
+		}
+	}
+	return (1);
 }
 
 int	main(int argc, char **argv)
 {
 	t_env	env;
 
+	printf("LALA");
+	fflush(stdout);
 	env = (t_env){0};
 	if (argc < 2)
 		return (0);
@@ -98,7 +127,8 @@ int	main(int argc, char **argv)
 	make_index_array(&env);
 	if (check_array_sortet(&env))
 		free_all(&env, ONLY_FREE);
-	sort_big_main(&env);
+	checker(&env);
+
 	free_all(&env, ONLY_FREE);
 	return (0);
 }
