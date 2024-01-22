@@ -6,7 +6,7 @@
 /*   By: aalatzas <aalatzas@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/07 06:04:21 by aalatzas          #+#    #+#             */
-/*   Updated: 2024/01/22 16:57:32 by aalatzas         ###   ########.fr       */
+/*   Updated: 2024/01/22 23:38:42 by aalatzas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,7 @@ int	checker(t_env *env)
 	while (1)
 	{
 		env->line = get_next_line(STDIN_FILENO);
+		printf("env->line :%s\n", env->line);
 		if (env->line == NULL)
 			return (0);
 		else
@@ -96,7 +97,10 @@ int	checker(t_env *env)
 			if (check_args(env) == EXIT_SUCCESS)
 				free(env->line);
 			else
+			{
+				free(env->line);
 				free_all(env, EXIT_FAILURE);
+			}
 		}
 	}
 	return (1);
@@ -123,9 +127,9 @@ int	main(int argc, char **argv)
 	}
 	not_2_time_same_nbr(&env);
 	make_index_array(&env);
+	checker(&env);
 	if (check_array_sortet(&env))
 		free_all(&env, ONLY_FREE);
-	checker(&env);
 	print_end_msg(&env);
 	return (0);
 }
