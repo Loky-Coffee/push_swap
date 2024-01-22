@@ -6,7 +6,7 @@
 #    By: aalatzas <aalatzas@student.42heilbronn.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/07 06:04:33 by aalatzas          #+#    #+#              #
-#    Updated: 2024/01/22 17:25:58 by aalatzas         ###   ########.fr        #
+#    Updated: 2024/01/23 00:34:20 by aalatzas         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -65,6 +65,8 @@ re: fclean all
 install_test:
 	git clone https://github.com/o-reo/push_swap_visualizer.git
 	cd push_swap_visualizer && mkdir build && cd build && cmake .. && make
+	curl -O https://cdn.intra.42.fr/document/document/23551/checker_Mac
+	chmod +x checker_Mac
 rm_test:
 	rm -rf push_swap_visualizer
 ################################################################################
