@@ -6,7 +6,7 @@
 /*   By: aalatzas <aalatzas@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/20 18:47:27 by aalatzas          #+#    #+#             */
-/*   Updated: 2024/01/20 20:29:09 by aalatzas         ###   ########.fr       */
+/*   Updated: 2024/01/22 16:27:39 by aalatzas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,7 @@ int	check_array_sortet(t_env *env)
 	int	i;
 
 	i = 0;
-	while (i < env->a_size - 1)
+	while (i < env->a_size - 2)
 	{
 		if (env->a[i] > env->a[i + 1])
 			return (0);

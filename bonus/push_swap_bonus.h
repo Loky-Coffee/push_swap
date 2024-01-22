@@ -6,7 +6,7 @@
 /*   By: aalatzas <aalatzas@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/07 06:04:43 by aalatzas          #+#    #+#             */
-/*   Updated: 2024/01/20 20:33:52 by aalatzas         ###   ########.fr       */
+/*   Updated: 2024/01/22 17:02:11 by aalatzas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,9 @@
 # define ERROR 1
 # define ONLY_FREE 0
 # define CHUNKS 3
+# define GREEN "\033[92m"
+# define RED "\033[91m"
+# define RESET "\033[0m"
 
 /**
  * ----------------------------------------------------------------------
@@ -78,14 +81,7 @@ typedef struct s_env
 	int			search_first_nummer_down;
 }	t_env;
 
-void		sort_big_main(t_env *env);
-void		sort_a_to_b(t_env *env);
-void		sort3(t_env *env);
-void		sort5(t_env *env);
-void		make_chunks(t_env *env);
 void		intex_stack_a(t_env *env);
-void		make_sort_array(t_env *env);
-void		search_less_cost(t_env *env);
 void		sa(t_env *env);
 void		sb(t_env *env);
 void		ss(t_env *env);
@@ -104,5 +100,6 @@ int			parse_args(int argc, char **argv, t_env *env);
 int			not_2_time_same_nbr(t_env *env);
 int			check_array_sortet(t_env *env);
 int			parse_args_array(char **argv, t_env *env);
+void		print_end_msg(t_env *env);
 
 #endif
