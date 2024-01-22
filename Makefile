@@ -6,7 +6,7 @@
 #    By: aalatzas <aalatzas@student.42heilbronn.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/07 06:04:33 by aalatzas          #+#    #+#              #
-#    Updated: 2024/01/22 17:20:00 by aalatzas         ###   ########.fr        #
+#    Updated: 2024/01/22 17:25:58 by aalatzas         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -45,7 +45,7 @@ $(OBJ_DIR)%.o: $(SRC_DIR)%.c
 	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
-	@rm -f $(OBJ_DIR)
+	@rm -rf $(OBJ_DIR)
 
 fclean: clean
 	@rm -f $(NAME)
@@ -96,7 +96,7 @@ $(OBJ_DIR_BONUS)%.o: $(SRC_DIR_BONUS)%.c
 	$(CC) $(CFLAGS) -c $< -o $@
 
 clean_bonus:
-	@rm -f $(OBJ_BONUS)
+	@rm -rf $(OBJ_DIR_BONUS)
 
 fclean_bonus: clean_bonus
 	@rm -f $(NAME_BONUS)
@@ -137,7 +137,7 @@ fclean_libft: clean_libft
 .PHONY: all clean fclean re start test libft re_libft clean_libft fclean_libft \
 		mlx clean_mlx tb t re_bonus all_bonus clean_bonus fclean_bonus \
 		re_bonus test_bonus
-fcleanall: fclean fclean_libft rm_test
+fcleanall: fclean fclean_libft rm_test clean_bonus
 		rm -f libft.a
 		rm -f libft.h
 		rm -f imgui.ini
