@@ -6,7 +6,7 @@
 /*   By: aalatzas <aalatzas@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/07 09:16:43 by aalatzas          #+#    #+#             */
-/*   Updated: 2024/01/20 20:29:00 by aalatzas         ###   ########.fr       */
+/*   Updated: 2024/01/22 16:44:21 by aalatzas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,12 +80,13 @@ void	free_all(t_env *env, int fd)
 	{
 		free(env->a);
 		free(env->b);
-		exit (0);
+		exit (EXIT_SUCCESS);
 	}
 	if (fd == 1)
 	{
 		free(env->a);
 		free(env->b);
-		ft_error("Error\n", 2);
+		ft_putstr_fd("Error\n", EXIT_FAILURE);
+		exit (EXIT_FAILURE);
 	}
 }

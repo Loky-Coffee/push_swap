@@ -6,12 +6,13 @@
 #    By: aalatzas <aalatzas@student.42heilbronn.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/07 06:04:33 by aalatzas          #+#    #+#              #
-#    Updated: 2024/01/20 22:05:58 by aalatzas         ###   ########.fr        #
+#    Updated: 2024/01/22 17:20:00 by aalatzas         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC = cc
 CFLAGS = -Wall -Werror -Wextra -g
+CMAKE_TESTER = cmake ..
 
 ################################################################################
 ####		 	 PUSH_SWAP_MANDATORY_PART_RULES			   #####
@@ -44,7 +45,7 @@ $(OBJ_DIR)%.o: $(SRC_DIR)%.c
 	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
-	@rm -f $(OBJ)
+	@rm -f $(OBJ_DIR)
 
 fclean: clean
 	@rm -f $(NAME)
@@ -63,11 +64,7 @@ re: fclean all
 
 install_test:
 	git clone https://github.com/o-reo/push_swap_visualizer.git
-	cd push_swap_visualizer
-	mkdir build
-	cd build
-	cmake ..
-	make
+	cd push_swap_visualizer && mkdir build && cd build && cmake .. && make
 rm_test:
 	rm -rf push_swap_visualizer
 ################################################################################
@@ -106,13 +103,9 @@ fclean_bonus: clean_bonus
 
 
 tb1: $(NAME)
-		./$(NAME) 2 1 3 6 5 8 7 4 9 0
-tb2: $(NAME)
-		./$(NAME) -52 -43 -20 -1 0 1 2 3 4 5 6 7 8 9 10 11 12 13 \
-			14 25 30 200 850 5000 10000 100000 1000000 10000000 \
-			100000000 1000000000
+		./$(NAME) 2 1 3 6 5 8 7 4 9 0 | ./$(NAME_BONUS) 2 1 3 6 5 8 7 4 9 0
 
-re_bonus: fclean bonus
+re_bonus: fclean_bonus bonus
 
 testb: all
 	tb1 tb2
@@ -148,3 +141,7 @@ fcleanall: fclean fclean_libft rm_test
 		rm -f libft.a
 		rm -f libft.h
 		rm -f imgui.ini
+		rm -f checker
+		rm -f checker_Mac
+		rm -f test.sh
+		rm -rf push_swap_visualizer

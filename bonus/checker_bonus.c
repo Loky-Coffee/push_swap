@@ -6,7 +6,7 @@
 /*   By: aalatzas <aalatzas@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/07 06:04:21 by aalatzas          #+#    #+#             */
-/*   Updated: 2024/01/20 22:02:56 by aalatzas         ###   ########.fr       */
+/*   Updated: 2024/01/22 16:57:32 by aalatzas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,34 +54,36 @@ void	make_index_array(t_env *env)
 	}
 	intex_stack_a(env);
 }
+
 int	check_args(t_env *env)
 {
-	if (ft_strncmp(env->line, "sa\n", ft_strlen(env->line)))
+	if (ft_strncmp(env->line, "sa\n", ft_strlen(env->line)) == 0)
 		sa(env);
-	else if (ft_strncmp(env->line, "sb\n", ft_strlen(env->line)))
+	else if (ft_strncmp(env->line, "sb\n", ft_strlen(env->line)) == 0)
 		sb(env);
-	else if (ft_strncmp(env->line, "ss\n", ft_strlen(env->line)))
+	else if (ft_strncmp(env->line, "ss\n", ft_strlen(env->line)) == 0)
 		ss(env);
-	else if (ft_strncmp(env->line, "pa\n", ft_strlen(env->line)))
+	else if (ft_strncmp(env->line, "pa\n", ft_strlen(env->line)) == 0)
 		pa(env);
-	else if (ft_strncmp(env->line, "pb\n", ft_strlen(env->line)))
+	else if (ft_strncmp(env->line, "pb\n", ft_strlen(env->line)) == 0)
 		pb(env);
-	else if (ft_strncmp(env->line, "ra\n", ft_strlen(env->line)))
+	else if (ft_strncmp(env->line, "ra\n", ft_strlen(env->line)) == 0)
 		ra(env);
-	else if (ft_strncmp(env->line, "rb\n", ft_strlen(env->line)))
+	else if (ft_strncmp(env->line, "rb\n", ft_strlen(env->line)) == 0)
 		rb(env);
-	else if (ft_strncmp(env->line, "rr\n", ft_strlen(env->line)))
+	else if (ft_strncmp(env->line, "rr\n", ft_strlen(env->line)) == 0)
 		rr(env);
-	else if (ft_strncmp(env->line, "rra\n", ft_strlen(env->line)))
+	else if (ft_strncmp(env->line, "rra\n", ft_strlen(env->line)) == 0)
 		rra(env);
-	else if (ft_strncmp(env->line, "rrb\n", ft_strlen(env->line)))
+	else if (ft_strncmp(env->line, "rrb\n", ft_strlen(env->line)) == 0)
 		rrb(env);
-	else if (ft_strncmp(env->line, "rrr\n", ft_strlen(env->line)))
+	else if (ft_strncmp(env->line, "rrr\n", ft_strlen(env->line)) == 0)
 		rrr(env);
 	else
-		return(EXIT_FAILURE);
+		return (EXIT_FAILURE);
 	return (EXIT_SUCCESS);
 }
+
 int	checker(t_env *env)
 {
 	while (1)
@@ -89,14 +91,12 @@ int	checker(t_env *env)
 		env->line = get_next_line(STDIN_FILENO);
 		if (env->line == NULL)
 			return (0);
-		if(check_args(env) == EXIT_FAILURE)
+		else
 		{
-			free(env->line);
-			break;
-		}
-		else if (check_args(env) == EXIT_SUCCESS)
-		{
-			free(env->line);
+			if (check_args(env) == EXIT_SUCCESS)
+				free(env->line);
+			else
+				free_all(env, EXIT_FAILURE);
 		}
 	}
 	return (1);
@@ -106,8 +106,6 @@ int	main(int argc, char **argv)
 {
 	t_env	env;
 
-	printf("LALA");
-	fflush(stdout);
 	env = (t_env){0};
 	if (argc < 2)
 		return (0);
@@ -128,7 +126,6 @@ int	main(int argc, char **argv)
 	if (check_array_sortet(&env))
 		free_all(&env, ONLY_FREE);
 	checker(&env);
-
-	free_all(&env, ONLY_FREE);
+	print_end_msg(&env);
 	return (0);
 }
