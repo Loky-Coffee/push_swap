@@ -1,6 +1,6 @@
 # Push_Swap Project
 
-This is my solution to the "push_swap" project at [Your School Name]. The goal of this project is to sort a list of numbers using a limited set of stack operations, implemented with arrays.
+This is my solution to the "push_swap" project at 42Heilbronn. The goal of this project is to sort a list of numbers using a limited set of stack operations, implemented with arrays.
 
 ## Table of Contents
 
