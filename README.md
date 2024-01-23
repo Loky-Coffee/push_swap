@@ -1,6 +1,12 @@
-# Push_Swap Project
+<div style="text-align: center;">
+  <h1 align="center"style="text-decoration: underline;">Push_Swap Project</h1>
+  <div style="display: flex; flex-direction: column; align-items: center;">
+    <img src="https://github.com/Loky-Coffee/push_swap/blob/main/the%20'push_swap'%20algorithm%20(1).png?raw=true" align="center" alt="the 'push_swap' algorithm" width="1024" height="512" />
+  </div>
+  <p>This is my solution to the "push_swap" project at 42Heilbronn. The goal of this project is to sort a list of numbers using a limited set of stack operations, implemented with arrays.</p>
+</div>
 
-This is my solution to the "push_swap" project at 42Heilbronn. The goal of this project is to sort a list of numbers using a limited set of stack operations, implemented with arrays.
+
 
 ## Table of Contents
 
