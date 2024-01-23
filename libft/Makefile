@@ -6,7 +6,7 @@
 #    By: aalatzas <aalatzas@student.42heilbronn.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/12 12:28:01 by aalatzas          #+#    #+#              #
-#    Updated: 2024/01/20 16:22:29 by aalatzas         ###   ########.fr        #
+#    Updated: 2024/01/23 03:44:58 by aalatzas         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,7 @@ free_split.c ft_error.c ft_is_min_nbr.c ft_is_max_nbr.c
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
 OBJ_DIR = obj/
-OBJ = $(addprefix $(OBJ_DIR), $(SRC:.c=.o))
+OBJ = $(addprefix $(OBJ_DIR), $(notdir $(SRC:.c=.o)))
 NAME = libft.a
 
 all: $(NAME)
@@ -38,7 +38,7 @@ $(OBJ_DIR)%.o: %.c
 	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
-	@rm -f $(OBJ)
+	@rm -rf obj
 
 fclean: clean
 	@rm -f $(NAME)

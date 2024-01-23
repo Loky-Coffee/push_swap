@@ -6,7 +6,7 @@
 #    By: aalatzas <aalatzas@student.42heilbronn.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/07 06:04:33 by aalatzas          #+#    #+#              #
-#    Updated: 2024/01/23 00:34:20 by aalatzas         ###   ########.fr        #
+#    Updated: 2024/01/23 03:40:23 by aalatzas         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -139,7 +139,7 @@ fclean_libft: clean_libft
 .PHONY: all clean fclean re start test libft re_libft clean_libft fclean_libft \
 		mlx clean_mlx tb t re_bonus all_bonus clean_bonus fclean_bonus \
 		re_bonus test_bonus
-fcleanall: fclean fclean_libft rm_test clean_bonus
+fcleanall: fclean clean_libft  fclean_libft rm_test clean_bonus
 		rm -f libft.a
 		rm -f libft.h
 		rm -f imgui.ini
